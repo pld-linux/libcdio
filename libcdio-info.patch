@@ -7,8 +7,21 @@
 -@dircategory Libraries
 +@dircategory Libraries:
  @direntry
--* libcdio: (libcdio).      Compact Disc input and control library.
-+* libcdio: (libcdio).			Compact Disc input and control library
+-* libcdio: (libcdio).      Compact Disc Input and Control Library.
++* libcdio: (libcdio).			Compact Disc Input and Control Library
  @end direntry
  
  @ifinfo
+--- libcdio-0.66/doc/Makefile.am.orig	2004-02-14 18:05:32.000000000 +0100
++++ libcdio-0.66/doc/Makefile.am	2004-02-17 23:23:01.442221760 +0100
+@@ -16,8 +16,8 @@
+ #    along with this program; if not, write to the Free Software
+ #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ #
+-EXTRA_DIST = doxygen/Doxyfile doxygen/run_doxygen
+-info_TEXINFOS = fdl.texi gpl.texi glossary.texi libcdio.texi 
++EXTRA_DIST = doxygen/Doxyfile doxygen/run_doxygen fdl.texi gpl.texi glossary.texi
++info_TEXINFOS = libcdio.texi 
+ 
+ reference:
+ 	-( cd ${top_srcdir} && $(MAKE) doxygen )
