@@ -1,0 +1,14 @@
+--- libcdio-0.65/doc/libcdio.texi.orig	2003-11-11 13:46:20.000000000 +0100
++++ libcdio-0.65/doc/libcdio.texi	2003-12-30 21:48:27.369839840 +0100
+@@ -16,9 +16,9 @@
+ @settitle The GNU libcdio library
+ @setchapternewpage on
+ 
+-@dircategory Libraries
++@dircategory Libraries:
+ @direntry
+-* libcdio: (libcdio).      Compact Disc input and control library.
++* libcdio: (libcdio).			Compact Disc input and control library
+ @end direntry
+ 
+ @ifinfo
