@@ -1,0 +1,17 @@
+--- libcdio-0.65/src/cd-info.c.orig	2003-11-16 20:30:45.000000000 +0100
++++ libcdio-0.65/src/cd-info.c	2003-12-31 01:03:07.650167328 +0100
+@@ -753,14 +753,8 @@
+ 
+   if (opts.debug_level == 3) {
+     cdio_loglevel_default = CDIO_LOG_INFO;
+-#ifdef HAVE_VCDINFO
+-    vcd_loglevel_default = VCD_LOG_INFO;
+-#endif
+   } else if (opts.debug_level >= 4) {
+     cdio_loglevel_default = CDIO_LOG_DEBUG;
+-#ifdef HAVE_VCDINFO
+-    vcd_loglevel_default = VCD_LOG_DEBUG;
+-#endif
+   }
+ 
+   switch (opts.source_image) {
