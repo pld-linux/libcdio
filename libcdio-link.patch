@@ -1,29 +1,20 @@
---- libcdio-0.66/src/Makefile.am.orig	2004-01-10 04:03:08.000000000 +0100
-+++ libcdio-0.66/src/Makefile.am	2004-02-17 23:20:16.220339304 +0100
-@@ -26,6 +26,8 @@
- man_MANS = cd-info.1 cd-read.1 
- $(man_MANS): %.1: %
- 	-$(HELP2MAN) --output=$@ ./$<
-+else
-+man_MANS = cd-info.1 cd-read.1
- endif
- 
- if BUILD_CDINFO
-@@ -41,14 +43,15 @@
+--- libcdio-0.67/src/Makefile.am.orig	2004-02-28 13:45:02.000000000 +0100
++++ libcdio-0.67/src/Makefile.am	2004-03-05 00:15:53.819203328 +0100
+@@ -44,14 +44,14 @@
  if BUILD_CDINFO_LINUX
  cdinfo_linux_SOURCES = cdinfo-linux.c
  cdinfo_linux_LDADD = $(LIBCDIO_LIBS) $(LIBPOPT_LIBS)
--bin_PROGRAMS = cd-info cd-read cdinfo-linux iso-info
+-bin_PROGRAMS = cd-info cd-read cdinfo-linux iso-info iso-read
 +cdinfo_linux_prog = cdinfo-linux
  else
--bin_PROGRAMS = cd-info cd-read iso-info
+-bin_PROGRAMS = cd-info cd-read iso-info iso-read
  EXTRA_DIST = cdinfo-linux.c $(man_MANS)
  endif
-+cdinfo_progs = cd-info cd-read iso-info
++cdinfo_progs = cd-info cd-read iso-info iso-read
  else 
  EXTRA_DIST = cdinfo-linux.c cd-info.c cd-read.c $(man_MANS)
  man_MANS = 
  endif
+-
 +bin_PROGRAMS = $(cdinfo_progs) $(cdinfo_linux_prog)
- 
  INCLUDES = -I$(top_srcdir) $(LIBPOPT_CFLAGS) $(LIBCDIO_CFLAGS) $(VCDINFO_CFLAGS)
