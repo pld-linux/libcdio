@@ -15,7 +15,7 @@ Source0:	ftp://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake >= 1.8.3
+BuildRequires:	automake >= 1:1.8.3
 BuildRequires:	libcddb-devel >= 0.9.4
 BuildRequires:	libtool >= 1:1.4.2-9
 %{?with_vcd:BuildRequires:	vcdimager-devel >= 0.7.20}
