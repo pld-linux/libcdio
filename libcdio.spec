@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without	cddb	# build cd-info without CDDB lookups (for bootstrap)
 %bcond_without	vcd	# build cd-info without VCD support (for bootstrap)
 #			  (affects only -utils, not libraries)
 #
@@ -17,7 +18,7 @@ Patch1:		%{name}-gcc4.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.8.3
-BuildRequires:	libcddb-devel >= 0.9.4
+%{?with_cddb:BuildRequires:	libcddb-devel >= 0.9.4}
 BuildRequires:	libtool >= 1:1.4.2-9
 %{?with_vcd:BuildRequires:	vcdimager-devel >= 0.7.21}
 BuildRequires:	pkgconfig
@@ -108,6 +109,7 @@ cp -f libpopt.m4 acinclude.m4
 %configure \
 	--enable-cd-info-linux \
 	--enable-maintainer-mode \
+	%{!?with_cddb:--disable-cddb} \
 	%{!?with_vcd:--disable-vcd-info}
 
 %{__make}
