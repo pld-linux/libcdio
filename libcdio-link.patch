@@ -1,0 +1,43 @@
+--- libcdio-0.65/lib/Makefile.am.orig	2003-09-14 11:34:17.000000000 +0200
++++ libcdio-0.65/lib/Makefile.am	2003-12-30 21:59:02.991210704 +0100
+@@ -50,6 +50,7 @@
+ 
+ lib_LTLIBRARIES     = libcdio.la libiso9660.la
+ libcdio_la_SOURCES = $(libcdio_sources)
++libiso9660_la_LIBADD = libcdio.la
+ libiso9660_la_SOURCES = \
+ 	iso9660.c \
+ 	iso9660_private.h \
+--- libcdio-0.65/src/Makefile.am.orig	2003-12-30 22:13:04.013355904 +0100
++++ libcdio-0.65/src/Makefile.am	2003-12-30 22:21:04.757271720 +0100
+@@ -26,6 +26,8 @@
+ man_MANS = cd-info.1 cd-read.1 
+ $(man_MANS): %.1: %
+ 	-$(HELP2MAN) --output=$@ ./$<
++else
++man_MANS = cd-info.1 cd-read.1
+ endif
+ 
+ if BUILD_CDINFO
+@@ -34,18 +36,19 @@
+ 
+ cd_read_SOURCES = cd-read.c util.c util.h
+ cd_read_LDADD =  $(LIBCDIO_LIBS) $(LIBPOPT_LIBS)
++cdinfo_progs = cd-info cd-read
+ 
+ if BUILD_CDINFO_LINUX
+ cdinfo_linux_SOURCES = cdinfo-linux.c
+ cdinfo_linux_LDADD = $(LIBCDIO_LIBS) $(LIBPOPT_LIBS)
+-bin_PROGRAMS = cd-info cd-read cdinfo-linux
++cdinfolinux = cdinfo-linux
+ else
+-bin_PROGRAMS = cd-info cd-read
+ EXTRA_DIST = cdinfo-linux.c $(man_MANS)
+ endif
+ else 
+ EXTRA_DIST = cdinfo-linux.c cd-info.c cd-read.c $(man_MANS)
+ man_MANS = 
+ endif
++bin_PROGRAMS = $(cdinfo_progs) $(cdinfolinux)
+ 
+ INCLUDES = -I$(top_srcdir) $(LIBPOPT_CFLAGS) $(LIBCDIO_CFLAGS) $(VCDINFO_CFLAGS)
