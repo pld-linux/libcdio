@@ -6,12 +6,12 @@
 Summary:	GNU Compact Disc Input and Control Library
 Summary(pl):	Biblioteka GNU do obs³ugi wej¶cia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.66
+Version:	0.67
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
-# Source0-md5:	a601f9c7847a68d53fa318141991b5df
+# Source0-md5:	2f4d67f296da3365781331258c70f3b2
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnu.org/software/libcdio/
@@ -107,6 +107,7 @@ cp -f libpopt.m4 acinclude.m4
 %{__automake}
 %configure \
 	--enable-cd-info-linux \
+	--enable-maintainer-mode \
 	%{!?with_vcd:--disable-vcd-info}
 
 %{__make}
