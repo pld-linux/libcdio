@@ -1,25 +1,25 @@
 #
 # Conditional build:
 %bcond_without	vcd	# build cd-info without VCD support (for bootstrap)
+#			  (affects only -utils, not libraries)
 #
 Summary:	GNU Compact Disc Input and Control Library
 Summary(pl):	Biblioteka GNU do obs³ugi wej¶cia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.65
-Release:	2
+Version:	0.66
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
-# Source0-md5:	37c1588ed5546466ef4d55c5cf4e5368
+# Source0-md5:	a601f9c7847a68d53fa318141991b5df
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
-Patch2:		%{name}-vcd.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	libcddb-devel >= 0.9.4
 BuildRequires:	libtool >= 1:1.4.2-9
-%{?with_vcd:BuildRequires:	vcdimager-cdio-devel >= 0.7.19}
+%{?with_vcd:BuildRequires:	vcdimager-devel >= 0.7.20}
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	texinfo
@@ -60,7 +60,7 @@ s³u¿±ce do wy¶wietlania informacji o p³ytach kompaktowych.
 Summary:	Header files for libcdio libraries
 Summary(pl):	Pliki nag³ówkowe bibliotek libcdio
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for libcdio libraries.
@@ -72,7 +72,7 @@ Pliki nag³ówkowe bibliotek libcdio.
 Summary:	Static libcdio libraries
 Summary(pl):	Statyczne biblioteki libcdio
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libcdio libraries.
@@ -84,7 +84,7 @@ Statyczne biblioteki libcdio.
 Summary:	libcdio utilities: cd-info, cd-read
 Summary(pl):	Narzêdzia u¿ywaj±ce libcdio: cd-info, cd-read
 Group:		Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description utils
 libcdio utilities: cd-info, cd-read.
@@ -96,7 +96,6 @@ Narzêdzia u¿ywaj±ce libcdio: cd-info, cd-read.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 cp -f libpopt.m4 acinclude.m4
 
