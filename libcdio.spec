@@ -13,12 +13,13 @@ Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
 # Source0-md5:	24c3b94467ca28f2c35a09cea1974ac2
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-gcc4.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.8.3
 BuildRequires:	libcddb-devel >= 0.9.4
 BuildRequires:	libtool >= 1:1.4.2-9
-%{?with_vcd:BuildRequires:	vcdimager-devel >= 0.7.20}
+%{?with_vcd:BuildRequires:	vcdimager-devel >= 0.7.21}
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 BuildRequires:	texinfo
@@ -94,6 +95,7 @@ Narzêdzia u¿ywaj±ce libcdio: cd-info, cd-read.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 cp -f libpopt.m4 acinclude.m4
 
