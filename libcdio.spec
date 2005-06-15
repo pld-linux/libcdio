@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	cddb	# build cd-info without CDDB lookups (for bootstrap)
-%bcond_without	static	# don't build static library
+%bcond_without	static_libs	# don't build static library
 %bcond_without	vcd	# build cd-info without VCD support (for bootstrap)
 #			  (affects only -utils, not libraries)
 #
@@ -110,7 +110,7 @@ cp -f libpopt.m4 acinclude.m4
 	--enable-maintainer-mode \
 	%{!?with_cddb:--disable-cddb} \
 	%{!?with_vcd:--disable-vcd-info} \
-	%{!?with_static:--disable-static}
+	%{!?with_static_libs:--disable-static}
 
 %{__make}
 
@@ -146,7 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/lib*.pc
 %{_infodir}/libcdio.info*
 
-%if %{with static}
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
