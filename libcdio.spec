@@ -8,12 +8,12 @@
 Summary:	GNU Compact Disc Input and Control Library
 Summary(pl):	Biblioteka GNU do obs³ugi wej¶cia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.74
-Release:	2
+Version:	0.75
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
-# Source0-md5:	2b1b03d96a992d171ebf2b13bcdcd866
+# Source0-md5:	628bd9e6d62747ff6a2b14f976673ea0
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.52
