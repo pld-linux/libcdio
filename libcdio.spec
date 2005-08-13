@@ -18,11 +18,13 @@ Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.8.3
+BuildRequires:	gettext-devel
 %{?with_cddb:BuildRequires:	libcddb-devel >= 0.9.4}
 BuildRequires:	libtool >= 1:1.4.2-9
 %{?with_vcd:BuildRequires:	vcdimager-devel >= 0.7.21}
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
+BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -97,6 +99,7 @@ Narzêdzia u¿ywaj±ce libcdio: cd-info, cd-read.
 %setup -q
 %patch0 -p1
 
+%{__sed} -i 's, example$,,' Makefile.am
 cp -f libpopt.m4 acinclude.m4
 
 %build
