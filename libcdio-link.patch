@@ -1,0 +1,30 @@
+--- libcdio-0.77/lib/cdio++/Makefile.am.orig	2006-03-07 11:46:36.000000000 +0100
++++ libcdio-0.77/lib/cdio++/Makefile.am	2006-03-21 22:41:57.181367750 +0100
+@@ -51,6 +51,7 @@
+ libcdiopp_sources = cdio.cpp devices.cpp
+ 
+ libcdio___la_SOURCES = $(libcdiopp_sources)
++libcdio___la_LIBADD = $(top_builddir)/lib/driver/libcdio.la
+ libcdio___la_ldflags = -version-info $(libcdiopp_la_CURRENT):$(libcdiopp_la_REVISION):$(libcdiopp_la_AGE)
+ 
+ libiso9660pp_la_CURRENT := 0
+@@ -60,6 +61,7 @@
+ libiso9660pp_sources = iso9660.cpp
+ 
+ libiso9660___la_SOURCES = $(libiso9660pp_sources)
++libiso9660___la_LIBADD = $(top_builddir)/lib/iso9660/libiso9660.la
+ libiso9660___la_ldflags = -version-info $(libiso9660pp_la_CURRENT):$(libiso9660pp_la_REVISION):$(libiso9660pp_la_AGE)
+ 
+ INCLUDES = -I$(top_srcdir)/include/
+--- libcdio-0.77/lib/Makefile.am.orig	2005-11-10 12:11:15.000000000 +0100
++++ libcdio-0.77/lib/Makefile.am	2006-03-21 22:45:39.563265750 +0100
+@@ -21,7 +21,7 @@
+ ########################################################
+ 
+ if BUILD_CD_PARANOIA
+-SUBDIRS =  cdio++ driver iso9660 cdda_interface paranoia udf
++SUBDIRS =  driver iso9660 cdio++ cdda_interface paranoia udf
+ else 
+-SUBDIRS =  cdio++ driver iso9660 udf
++SUBDIRS =  driver iso9660 cdio++ udf
+ endif
