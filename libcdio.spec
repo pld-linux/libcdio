@@ -1,9 +1,9 @@
 #
 # Conditional build:
-%bcond_without	cddb	# build cd-info without CDDB lookups (for bootstrap)
+%bcond_without	cddb		# build cd-info without CDDB lookups (for bootstrap)
 %bcond_without	static_libs	# don't build static library
-%bcond_without	vcd	# build cd-info without VCD support (for bootstrap)
-#			  (affects only -utils, not libraries)
+%bcond_without	vcd		# build cd-info without VCD support (for bootstrap)
+#				  (affects only -utils, not libraries)
 #
 Summary:	GNU Compact Disc Input and Control Library
 Summary(pl):	Biblioteka GNU do obs³ugi wej¶cia i sterowania czytnikiem CD
@@ -15,15 +15,17 @@ Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
 # Source0-md5:	7ea25252009b49422055da97a96efe04
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-link.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.8.3
 BuildRequires:	gettext-devel
+BuildRequires:	help2man
 %{?with_cddb:BuildRequires:	libcddb-devel >= 0.9.4}
-BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	libstdc++-devel
+BuildRequires:	libtool >= 2:1.5
 %{?with_vcd:BuildRequires:	vcdimager-devel >= 0.7.21}
 BuildRequires:	pkgconfig
-BuildRequires:	popt-devel
 BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -83,6 +85,44 @@ Static libcdio libraries.
 %description static -l pl
 Statyczne biblioteki libcdio.
 
+%package c++
+Summary:	C++ libcdio libraries
+Summary(pl):	Biblioteki C++ libcdio
+Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description c++
+C++ libcdio libraries.
+
+%description c++ -l pl
+Biblioteki C++ libcdio.
+
+%package c++-devel
+Summary:	Header files for C++ libcdio libraries
+Summary(pl):	Pliki nag³ówkowe bibliotek C++ libcdio
+Group:		Development/Libraries
+Requires:	%{name}-c++ = %{version}-%{release}
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	libstdc++-devel
+
+%description c++-devel
+Header files for C++ libcdio libraries.
+
+%description c++-devel -l pl
+Pliki nag³ówkowe bibliotek C++ libcdio.
+
+%package c++-static
+Summary:	Static C++ libcdio libraries
+Summary(pl):	Statyczne biblioteki C++ libcdio
+Group:		Development/Libraries
+Requires:	%{name}-c++-devel = %{version}-%{release}
+
+%description c++-static
+Static C++ libcdio libraries.
+
+%description c++-static -l pl
+Statyczne biblioteki C++ libcdio.
+
 %package utils
 Summary:	libcdio utilities: cd-info, cd-read
 Summary(pl):	Narzêdzia u¿ywaj±ce libcdio: cd-info, cd-read
@@ -98,9 +138,9 @@ Narzêdzia u¿ywaj±ce libcdio: cd-info, cd-read.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %{__sed} -i 's, example$,,' Makefile.am
-#cp -f libpopt.m4 acinclude.m4
 
 %build
 %{__libtoolize}
@@ -139,20 +179,59 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
+%attr(755,root,root) %{_libdir}/libcdio_cdda.so.*.*.*
+%attr(755,root,root) %{_libdir}/libcdio_paranoia.so.*.*.*
+%attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
+%attr(755,root,root) %{_libdir}/libudf.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libcdio.so
+%attr(755,root,root) %{_libdir}/libcdio_cdda.so
+%attr(755,root,root) %{_libdir}/libcdio_paranoia.so
+%attr(755,root,root) %{_libdir}/libiso9660.so
+%attr(755,root,root) %{_libdir}/libudf.so
+%{_libdir}/libcdio.la
+%{_libdir}/libcdio_cdda.la
+%{_libdir}/libcdio_paranoia.la
+%{_libdir}/libiso9660.la
+%{_libdir}/libudf.la
 %{_includedir}/cdio
-%{_pkgconfigdir}/lib*.pc
+%{_pkgconfigdir}/libcdio.pc
+%{_pkgconfigdir}/libcdio_cdda.pc
+%{_pkgconfigdir}/libcdio_paranoia.pc
+%{_pkgconfigdir}/libiso9660.pc
 %{_infodir}/libcdio.info*
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libcdio.a
+%{_libdir}/libcdio_cdda.a
+%{_libdir}/libcdio_paranoia.a
+%{_libdir}/libiso9660.a
+%{_libdir}/libudf.a
+%endif
+
+%files c++
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libcdio++.so.*.*.*
+%attr(755,root,root) %{_libdir}/libiso9660++.so.*.*.*
+
+%files c++-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libcdio++.so
+%attr(755,root,root) %{_libdir}/libiso9660++.so
+%{_libdir}/libcdio++.la
+%{_libdir}/libiso9660++.la
+%{_includedir}/cdio++
+
+%if %{with static_libs}
+%files c++-static
+%defattr(644,root,root,755)
+%{_libdir}/libcdio++.a
+%{_libdir}/libiso9660++.a
 %endif
 
 %files utils
