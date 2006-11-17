@@ -16,15 +16,3 @@
  libiso9660___la_ldflags = -version-info $(libiso9660pp_la_CURRENT):$(libiso9660pp_la_REVISION):$(libiso9660pp_la_AGE)
  
  INCLUDES = -I$(top_srcdir)/include/
---- libcdio-0.77/lib/Makefile.am.orig	2005-11-10 12:11:15.000000000 +0100
-+++ libcdio-0.77/lib/Makefile.am	2006-03-21 22:45:39.563265750 +0100
-@@ -21,7 +21,7 @@
- ########################################################
- 
- if BUILD_CD_PARANOIA
--SUBDIRS =  cdio++ driver iso9660 cdda_interface paranoia udf
-+SUBDIRS =  driver iso9660 cdio++ cdda_interface paranoia udf
- else 
--SUBDIRS =  cdio++ driver iso9660 udf
-+SUBDIRS =  driver iso9660 cdio++ udf
- endif
