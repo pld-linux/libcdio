@@ -7,7 +7,7 @@
 #				  (affects only -utils, not libraries)
 #
 Summary:	GNU Compact Disc Input and Control Library
-Summary(pl):	Biblioteka GNU do obs³ugi wej¶cia i sterowania czytnikiem CD
+Summary(pl.UTF-8):   Biblioteka GNU do obsÅ‚ugi wejÅ›cia i sterowania czytnikiem CD
 Name:		libcdio
 Version:	0.78.2
 Release:	1
@@ -48,61 +48,61 @@ and CD-DA plugin for the media player xine.
 A sample utility, cd-info which displayings CD info is included in
 utils subpackage.
 
-%description -l pl
-Ta biblioteka obudowuje czynno¶ci odczytu i sterowania czytnikami
-CD-ROM. Aplikacje chc±ce zapomnieæ o zale¿nych od systemu lub
-urz±dzenia w³asno¶ciach CD-ROM-u mog± u¿ywaæ tej biblioteki.
+%description -l pl.UTF-8
+Ta biblioteka obudowuje czynnoÅ›ci odczytu i sterowania czytnikami
+CD-ROM. Aplikacje chcÄ…ce zapomnieÄ‡ o zaleÅ¼nych od systemu lub
+urzÄ…dzenia wÅ‚asnoÅ›ciach CD-ROM-u mogÄ… uÅ¼ywaÄ‡ tej biblioteki.
 
-Dostêpna jest pewna obs³uga obrazów dysków typu BIN/CUE czy NRG, wiêc
-aplikacje u¿ywaj±ce tej biblioteki mog± czytaæ tak¿e takie obrazy
-dysków tak jakby by³y p³ytami.
+DostÄ™pna jest pewna obsÅ‚uga obrazÃ³w dyskÃ³w typu BIN/CUE czy NRG, wiÄ™c
+aplikacje uÅ¼ywajÄ…ce tej biblioteki mogÄ… czytaÄ‡ takÅ¼e takie obrazy
+dyskÃ³w tak jakby byÅ‚y pÅ‚ytami.
 
-Biblioteka jest u¿ywana bezpo¶rednio w VCDImagerze, wtyczce z
-nawigacj± do Video CD oraz wtyczce CD-DA dla odtwarzacza multimediów
+Biblioteka jest uÅ¼ywana bezpoÅ›rednio w VCDImagerze, wtyczce z
+nawigacjÄ… do Video CD oraz wtyczce CD-DA dla odtwarzacza multimediÃ³w
 xine.
 
-W podpakiecie utils za³±czone jest przyk³adowe narzêdzie cd-info
-s³u¿±ce do wy¶wietlania informacji o p³ytach kompaktowych.
+W podpakiecie utils zaÅ‚Ä…czone jest przykÅ‚adowe narzÄ™dzie cd-info
+sÅ‚uÅ¼Ä…ce do wyÅ›wietlania informacji o pÅ‚ytach kompaktowych.
 
 %package devel
 Summary:	Header files for libcdio libraries
-Summary(pl):	Pliki nag³ówkowe bibliotek libcdio
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe bibliotek libcdio
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for libcdio libraries.
 
-%description devel -l pl
-Pliki nag³ówkowe bibliotek libcdio.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe bibliotek libcdio.
 
 %package static
 Summary:	Static libcdio libraries
-Summary(pl):	Statyczne biblioteki libcdio
+Summary(pl.UTF-8):   Statyczne biblioteki libcdio
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libcdio libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki libcdio.
 
 %package c++
 Summary:	C++ libcdio libraries
-Summary(pl):	Biblioteki C++ libcdio
+Summary(pl.UTF-8):   Biblioteki C++ libcdio
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description c++
 C++ libcdio libraries.
 
-%description c++ -l pl
+%description c++ -l pl.UTF-8
 Biblioteki C++ libcdio.
 
 %package c++-devel
 Summary:	Header files for C++ libcdio libraries
-Summary(pl):	Pliki nag³ówkowe bibliotek C++ libcdio
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe bibliotek C++ libcdio
 Group:		Development/Libraries
 Requires:	%{name}-c++ = %{version}-%{release}
 Requires:	%{name}-devel = %{version}-%{release}
@@ -111,32 +111,32 @@ Requires:	libstdc++-devel
 %description c++-devel
 Header files for C++ libcdio libraries.
 
-%description c++-devel -l pl
-Pliki nag³ówkowe bibliotek C++ libcdio.
+%description c++-devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe bibliotek C++ libcdio.
 
 %package c++-static
 Summary:	Static C++ libcdio libraries
-Summary(pl):	Statyczne biblioteki C++ libcdio
+Summary(pl.UTF-8):   Statyczne biblioteki C++ libcdio
 Group:		Development/Libraries
 Requires:	%{name}-c++-devel = %{version}-%{release}
 
 %description c++-static
 Static C++ libcdio libraries.
 
-%description c++-static -l pl
+%description c++-static -l pl.UTF-8
 Statyczne biblioteki C++ libcdio.
 
 %package utils
 Summary:	libcdio utilities: cd-info, cd-read
-Summary(pl):	Narzêdzia u¿ywaj±ce libcdio: cd-info, cd-read
+Summary(pl.UTF-8):   NarzÄ™dzia uÅ¼ywajÄ…ce libcdio: cd-info, cd-read
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
 
 %description utils
 libcdio utilities: cd-info, cd-read.
 
-%description utils -l pl
-Narzêdzia u¿ywaj±ce libcdio: cd-info, cd-read.
+%description utils -l pl.UTF-8
+NarzÄ™dzia uÅ¼ywajÄ…ce libcdio: cd-info, cd-read.
 
 %prep
 %setup -q
