@@ -7,7 +7,7 @@
 #				  (affects only -utils, not libraries)
 #
 Summary:	GNU Compact Disc Input and Control Library
-Summary(pl.UTF-8):   Biblioteka GNU do obsługi wejścia i sterowania czytnikiem CD
+Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia i sterowania czytnikiem CD
 Name:		libcdio
 Version:	0.78.2
 Release:	1
@@ -66,7 +66,7 @@ służące do wyświetlania informacji o płytach kompaktowych.
 
 %package devel
 Summary:	Header files for libcdio libraries
-Summary(pl.UTF-8):   Pliki nagłówkowe bibliotek libcdio
+Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek libcdio
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -78,7 +78,7 @@ Pliki nagłówkowe bibliotek libcdio.
 
 %package static
 Summary:	Static libcdio libraries
-Summary(pl.UTF-8):   Statyczne biblioteki libcdio
+Summary(pl.UTF-8):	Statyczne biblioteki libcdio
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -90,7 +90,7 @@ Statyczne biblioteki libcdio.
 
 %package c++
 Summary:	C++ libcdio libraries
-Summary(pl.UTF-8):   Biblioteki C++ libcdio
+Summary(pl.UTF-8):	Biblioteki C++ libcdio
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -102,7 +102,7 @@ Biblioteki C++ libcdio.
 
 %package c++-devel
 Summary:	Header files for C++ libcdio libraries
-Summary(pl.UTF-8):   Pliki nagłówkowe bibliotek C++ libcdio
+Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek C++ libcdio
 Group:		Development/Libraries
 Requires:	%{name}-c++ = %{version}-%{release}
 Requires:	%{name}-devel = %{version}-%{release}
@@ -116,7 +116,7 @@ Pliki nagłówkowe bibliotek C++ libcdio.
 
 %package c++-static
 Summary:	Static C++ libcdio libraries
-Summary(pl.UTF-8):   Statyczne biblioteki C++ libcdio
+Summary(pl.UTF-8):	Statyczne biblioteki C++ libcdio
 Group:		Development/Libraries
 Requires:	%{name}-c++-devel = %{version}-%{release}
 
@@ -128,7 +128,7 @@ Statyczne biblioteki C++ libcdio.
 
 %package utils
 Summary:	libcdio utilities: cd-info, cd-read
-Summary(pl.UTF-8):   Narzędzia używające libcdio: cd-info, cd-read
+Summary(pl.UTF-8):	Narzędzia używające libcdio: cd-info, cd-read
 Group:		Applications
 Requires:	%{name} = %{version}-%{release}
 
