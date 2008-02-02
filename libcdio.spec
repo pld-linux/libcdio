@@ -10,7 +10,7 @@ Summary:	GNU Compact Disc Input and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia i sterowania czytnikiem CD
 Name:		libcdio
 Version:	0.79
-Release:	1.1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
@@ -187,11 +187,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
-%attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
-%attr(755,root,root) %{_libdir}/libcdio_cdda.so.*.*.*
-%attr(755,root,root) %{_libdir}/libcdio_paranoia.so.*.*.*
-%attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
-%attr(755,root,root) %{_libdir}/libudf.so.*.*.*
+%attr(755,root,root) %{_libdir}/libcdio.so.*
+%attr(755,root,root) %{_libdir}/libcdio_cdda.so.*
+%attr(755,root,root) %{_libdir}/libcdio_paranoia.so.*
+%attr(755,root,root) %{_libdir}/libiso9660.so.*
+%attr(755,root,root) %{_libdir}/libudf.so.*
 
 %files devel
 %defattr(644,root,root,755)
@@ -224,8 +224,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files c++
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libcdio++.so.*.*.*
-%attr(755,root,root) %{_libdir}/libiso9660++.so.*.*.*
+%attr(755,root,root) %{_libdir}/libcdio++.so.*
+%attr(755,root,root) %{_libdir}/libiso9660++.so.*
 
 %files c++-devel
 %defattr(644,root,root,755)
