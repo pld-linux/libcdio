@@ -175,10 +175,10 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%post devel	-p	/sbin/postshell
+%post	devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun devel	-p	/sbin/postshell
+%postun	devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %post	c++ -p /sbin/ldconfig
@@ -187,11 +187,16 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
-%attr(755,root,root) %{_libdir}/libcdio.so.*
-%attr(755,root,root) %{_libdir}/libcdio_cdda.so.*
-%attr(755,root,root) %{_libdir}/libcdio_paranoia.so.*
-%attr(755,root,root) %{_libdir}/libiso9660.so.*
-%attr(755,root,root) %{_libdir}/libudf.so.*
+%attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcdio.so.7
+%attr(755,root,root) %{_libdir}/libcdio_cdda.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcdio_cdda.so.0
+%attr(755,root,root) %{_libdir}/libcdio_paranoia.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcdio_paranoia.so.0
+%attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.5
+%attr(755,root,root) %{_libdir}/libudf.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libudf.so.0
 
 %files devel
 %defattr(644,root,root,755)
@@ -224,8 +229,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files c++
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libcdio++.so.*
-%attr(755,root,root) %{_libdir}/libiso9660++.so.*
+%attr(755,root,root) %{_libdir}/libcdio++.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcdio++.so.0
+%attr(755,root,root) %{_libdir}/libiso9660++.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libiso9660++.so.0
 
 %files c++-devel
 %defattr(644,root,root,755)
