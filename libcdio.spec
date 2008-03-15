@@ -1,4 +1,3 @@
-# TODO: try to build cdda-player (needs some ncurses fixes, at least CPPFLAGS)
 #
 # Conditional build:
 %bcond_without	cddb		# build cd-info without CDDB lookups (for bootstrap)
@@ -9,12 +8,12 @@
 Summary:	GNU Compact Disc Input and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.79
-Release:	3
+Version:	0.80
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	ftp://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
-# Source0-md5:	0ec00a5b8b119aab6268dd2d294f215e
+Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
+# Source0-md5:	6495add276ed11b7ac8a88092799ab4f
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnu.org/software/libcdio/
@@ -26,7 +25,7 @@ BuildRequires:	help2man
 %{?with_cddb:BuildRequires:	libcddb-devel >= 1.0.1}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
-#BuildRequires:	ncurses-devel
+BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
@@ -145,6 +144,9 @@ Narzędzia używające libcdio: cd-info, cd-read.
 
 %{__sed} -i 's, example$,,' Makefile.am
 
+# Makefile.am bug: $(paranoiapcs) not included in pkgconfig_DATA
+%{__sed} -i 's/libudf\.pc$/libudf.pc \\/' Makefile.am
+
 cp -f /usr/share/gettext/config.rpath .
 
 %build
@@ -153,6 +155,7 @@ cp -f /usr/share/gettext/config.rpath .
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+CPPFLAGS="-I/usr/include/ncurses"
 %configure \
 	--enable-cd-info-linux \
 	--enable-maintainer-mode \
@@ -215,6 +218,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/libcdio_cdda.pc
 %{_pkgconfigdir}/libcdio_paranoia.pc
 %{_pkgconfigdir}/libiso9660.pc
+%{_pkgconfigdir}/libudf.pc
 %{_infodir}/libcdio.info*
 
 %if %{with static_libs}
@@ -241,6 +245,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libcdio++.la
 %{_libdir}/libiso9660++.la
 %{_includedir}/cdio++
+%{_pkgconfigdir}/libcdio++.pc
+%{_pkgconfigdir}/libiso9660++.pc
 
 %if %{with static_libs}
 %files c++-static
