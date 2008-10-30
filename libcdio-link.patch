@@ -1,18 +1,18 @@
---- libcdio-0.77/lib/cdio++/Makefile.am.orig	2006-03-07 11:46:36.000000000 +0100
-+++ libcdio-0.77/lib/cdio++/Makefile.am	2006-03-21 22:41:57.181367750 +0100
-@@ -51,6 +51,7 @@
+--- libcdio-0.81/lib/cdio++/Makefile.am.orig	2008-10-20 03:25:15.000000000 +0200
++++ libcdio-0.81/lib/cdio++/Makefile.am	2008-10-30 21:00:10.588730777 +0100
+@@ -50,6 +50,7 @@
  libcdiopp_sources = cdio.cpp devices.cpp
  
  libcdio___la_SOURCES = $(libcdiopp_sources)
 +libcdio___la_LIBADD = $(top_builddir)/lib/driver/libcdio.la
- libcdio___la_ldflags = -version-info $(libcdiopp_la_CURRENT):$(libcdiopp_la_REVISION):$(libcdiopp_la_AGE)
+ libcdio___la_ldflags = -version-info $(libcdiopp_la_CURRENT):$(libcdiopp_la_REVISION):$(libcdiopp_la_AGE) @LT_NO_UNDEFINED@
  
- libiso9660pp_la_CURRENT := 0
-@@ -60,6 +61,7 @@
+ libiso9660pp_la_CURRENT = 0
+@@ -59,6 +60,7 @@
  libiso9660pp_sources = iso9660.cpp
  
  libiso9660___la_SOURCES = $(libiso9660pp_sources)
 +libiso9660___la_LIBADD = $(top_builddir)/lib/iso9660/libiso9660.la
- libiso9660___la_ldflags = -version-info $(libiso9660pp_la_CURRENT):$(libiso9660pp_la_REVISION):$(libiso9660pp_la_AGE)
+ libiso9660___la_ldflags = -version-info $(libiso9660pp_la_CURRENT):$(libiso9660pp_la_REVISION):$(libiso9660pp_la_AGE) @LT_NO_UNDEFINED@
  
- INCLUDES = -I$(top_srcdir)/include/
+ INCLUDES = -I$(top_srcdir)/include/ -I$(top_builddir)/include
