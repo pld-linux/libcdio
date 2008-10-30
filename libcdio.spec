@@ -8,12 +8,12 @@
 Summary:	GNU Compact Disc Input and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.80
-Release:	3
-License:	GPL v2+
+Version:	0.81
+Release:	1
+License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
-# Source0-md5:	6495add276ed11b7ac8a88092799ab4f
+# Source0-md5:	2ad1622b672ccf53a3444a0c55724d38
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnu.org/software/libcdio/
@@ -144,8 +144,8 @@ Narzędzia używające libcdio: cd-info, cd-read.
 
 %{__sed} -i 's, example$,,' Makefile.am
 
-# Makefile.am bug: $(paranoiapcs) not included in pkgconfig_DATA
-%{__sed} -i 's/libudf\.pc$/libudf.pc \\/' Makefile.am
+# bug: *.pc for C++ bindings, not programs
+%{__sed} -i 's,ENABLE_CPP,ENABLE_CXX_BINDINGS,' Makefile.am
 
 cp -f /usr/share/gettext/config.rpath .
 
@@ -191,13 +191,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
 %attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio.so.7
+%attr(755,root,root) %ghost %{_libdir}/libcdio.so.10
 %attr(755,root,root) %{_libdir}/libcdio_cdda.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcdio_cdda.so.0
 %attr(755,root,root) %{_libdir}/libcdio_paranoia.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcdio_paranoia.so.0
 %attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.5
+%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.7
 %attr(755,root,root) %{_libdir}/libudf.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libudf.so.0
 
