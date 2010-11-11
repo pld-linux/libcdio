@@ -255,6 +255,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files utils
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/*.1*
+%attr(755,root,root) %{_bindir}/cd-drive
+%attr(755,root,root) %{_bindir}/cd-info
+%attr(755,root,root) %{_bindir}/cd-paranoia
+%attr(755,root,root) %{_bindir}/cd-read
+%attr(755,root,root) %{_bindir}/cdda-player
+%attr(755,root,root) %{_bindir}/cdinfo-linux
+%attr(755,root,root) %{_bindir}/iso-info
+%attr(755,root,root) %{_bindir}/iso-read
+%attr(755,root,root) %{_bindir}/mmc-tool
+%{_mandir}/man1/cd-drive.1*
+%{_mandir}/man1/cd-info.1*
+%{_mandir}/man1/cd-paranoia.1*
+%{_mandir}/man1/cd-read.1*
+%{_mandir}/man1/iso-info.1*
+%{_mandir}/man1/iso-read.1*
 %lang(ja) %{_mandir}/ja/man1/*.1*
