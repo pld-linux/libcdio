@@ -5,18 +5,18 @@
 %bcond_without	vcd		# build cd-info without VCD support (for bootstrap)
 #				  (affects only -utils, not libraries)
 #
-Summary:	GNU Compact Disc Input and Control Library
-Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia i sterowania czytnikiem CD
+Summary:	GNU Compact Disc Input, Output and Control Library
+Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.82
-Release:	2
+Version:	0.83
+Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
-# Source0-md5:	1c29b18e01ab2b966162bc727bf3c360
+# Source0-md5:	b9e0f1bccb142e697cd834fe56b6e6fb
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/libcdio/
-BuildRequires:	autoconf >= 2.52
+BuildRequires:	autoconf >= 2.67
 BuildRequires:	automake >= 1:1.8.3
 # for AM_ICONV and config.rpath
 BuildRequires:	gettext-devel >= 0.14
@@ -157,6 +157,7 @@ CPPFLAGS="-I/usr/include/ncurses"
 %configure \
 	--enable-cd-info-linux \
 	--enable-maintainer-mode \
+	--enable-rock \
 	%{!?with_cddb:--disable-cddb} \
 	%{!?with_vcd:--disable-vcd-info} \
 	%{!?with_static_libs:--disable-static}
@@ -189,13 +190,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
 %attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio.so.12
+%attr(755,root,root) %ghost %{_libdir}/libcdio.so.13
 %attr(755,root,root) %{_libdir}/libcdio_cdda.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio_cdda.so.0
+%attr(755,root,root) %ghost %{_libdir}/libcdio_cdda.so.1
 %attr(755,root,root) %{_libdir}/libcdio_paranoia.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio_paranoia.so.0
+%attr(755,root,root) %ghost %{_libdir}/libcdio_paranoia.so.1
 %attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.7
+%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.8
 %attr(755,root,root) %{_libdir}/libudf.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libudf.so.0
 
