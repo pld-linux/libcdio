@@ -8,15 +8,15 @@
 Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.83
+Version:	0.90
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
-# Source0-md5:	b9e0f1bccb142e697cd834fe56b6e6fb
+# Source0-md5:	1b245b023fb03a58d030fd2800db3247
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/libcdio/
-BuildRequires:	autoconf >= 2.67
+BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.8.3
 # for AM_ICONV and config.rpath
 BuildRequires:	gettext-devel >= 0.14
@@ -155,6 +155,7 @@ cp -f /usr/share/gettext/config.rpath .
 %{__automake}
 CPPFLAGS="-I/usr/include/ncurses"
 %configure \
+	--disable-silent-rules \
 	--enable-cd-info-linux \
 	--enable-maintainer-mode \
 	--enable-rock \
@@ -168,8 +169,7 @@ CPPFLAGS="-I/usr/include/ncurses"
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	mansubdir=/ja/man1
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -190,11 +190,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
 %attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio.so.13
-%attr(755,root,root) %{_libdir}/libcdio_cdda.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio_cdda.so.1
-%attr(755,root,root) %{_libdir}/libcdio_paranoia.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio_paranoia.so.1
+%attr(755,root,root) %ghost %{_libdir}/libcdio.so.14
 %attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libiso9660.so.8
 %attr(755,root,root) %{_libdir}/libudf.so.*.*.*
@@ -203,19 +199,13 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcdio.so
-%attr(755,root,root) %{_libdir}/libcdio_cdda.so
-%attr(755,root,root) %{_libdir}/libcdio_paranoia.so
 %attr(755,root,root) %{_libdir}/libiso9660.so
 %attr(755,root,root) %{_libdir}/libudf.so
 %{_libdir}/libcdio.la
-%{_libdir}/libcdio_cdda.la
-%{_libdir}/libcdio_paranoia.la
 %{_libdir}/libiso9660.la
 %{_libdir}/libudf.la
 %{_includedir}/cdio
 %{_pkgconfigdir}/libcdio.pc
-%{_pkgconfigdir}/libcdio_cdda.pc
-%{_pkgconfigdir}/libcdio_paranoia.pc
 %{_pkgconfigdir}/libiso9660.pc
 %{_pkgconfigdir}/libudf.pc
 %{_infodir}/libcdio.info*
@@ -224,8 +214,6 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libcdio.a
-%{_libdir}/libcdio_cdda.a
-%{_libdir}/libcdio_paranoia.a
 %{_libdir}/libiso9660.a
 %{_libdir}/libudf.a
 %endif
@@ -258,7 +246,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/cd-drive
 %attr(755,root,root) %{_bindir}/cd-info
-%attr(755,root,root) %{_bindir}/cd-paranoia
 %attr(755,root,root) %{_bindir}/cd-read
 %attr(755,root,root) %{_bindir}/cdda-player
 %attr(755,root,root) %{_bindir}/cdinfo-linux
@@ -267,8 +254,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mmc-tool
 %{_mandir}/man1/cd-drive.1*
 %{_mandir}/man1/cd-info.1*
-%{_mandir}/man1/cd-paranoia.1*
 %{_mandir}/man1/cd-read.1*
 %{_mandir}/man1/iso-info.1*
 %{_mandir}/man1/iso-read.1*
-%lang(ja) %{_mandir}/ja/man1/*.1*
