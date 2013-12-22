@@ -8,12 +8,12 @@
 Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.90
+Version:	0.92
 Release:	1
 License:	GPL v3+
 Group:		Libraries
-Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
-# Source0-md5:	1b245b023fb03a58d030fd2800db3247
+Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.bz2
+# Source0-md5:	293bf5ad79b165c358a3a27d9d6d1ea8
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.61
@@ -171,6 +171,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -190,9 +193,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
 %attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio.so.14
+%attr(755,root,root) %ghost %{_libdir}/libcdio.so.15
 %attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.8
+%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.9
 %attr(755,root,root) %{_libdir}/libudf.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libudf.so.0
 
@@ -201,9 +204,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libcdio.so
 %attr(755,root,root) %{_libdir}/libiso9660.so
 %attr(755,root,root) %{_libdir}/libudf.so
-%{_libdir}/libcdio.la
-%{_libdir}/libiso9660.la
-%{_libdir}/libudf.la
 %{_includedir}/cdio
 %{_pkgconfigdir}/libcdio.pc
 %{_pkgconfigdir}/libiso9660.pc
@@ -229,8 +229,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcdio++.so
 %attr(755,root,root) %{_libdir}/libiso9660++.so
-%{_libdir}/libcdio++.la
-%{_libdir}/libiso9660++.la
 %{_includedir}/cdio++
 %{_pkgconfigdir}/libcdio++.pc
 %{_pkgconfigdir}/libiso9660++.pc
