@@ -8,12 +8,12 @@
 Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.92
+Version:	0.93
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.bz2
-# Source0-md5:	293bf5ad79b165c358a3a27d9d6d1ea8
+# Source0-md5:	8be842d903f086941c45ad0360420314
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.61
@@ -193,9 +193,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
 %attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio.so.15
+%attr(755,root,root) %ghost %{_libdir}/libcdio.so.16
 %attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.9
+%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.10
 %attr(755,root,root) %{_libdir}/libudf.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libudf.so.0
 
