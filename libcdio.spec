@@ -19,7 +19,7 @@ URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.8.3
 # for AM_ICONV and config.rpath
-BuildRequires:	gettext-devel >= 0.14
+BuildRequires:	gettext-tools >= 0.14
 BuildRequires:	help2man
 %{?with_cddb:BuildRequires:	libcddb-devel >= 1.0.1}
 BuildRequires:	libstdc++-devel
