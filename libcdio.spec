@@ -1,15 +1,20 @@
 #
 # Conditional build:
+%bcond_with	bootstrap	# disable features to able to build without circular dependencies
 %bcond_without	cddb		# build cd-info without CDDB lookups (for bootstrap)
 %bcond_without	static_libs	# don't build static library
-%bcond_without	vcd		# build cd-info without VCD support (for bootstrap)
-#				  (affects only -utils, not libraries)
-#
+%bcond_without	vcd		# build cd-info without VCD support (for bootstrap) (affects only *-utils, not libraries)
+
+%if %{with bootstrap}
+%undefine	with_cddb
+%undefine	with_vcd
+%endif
+
 Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
 Version:	0.93
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.bz2
