@@ -14,7 +14,7 @@ Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
 Version:	1.0.0
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.bz2
@@ -22,6 +22,8 @@ Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-info.patch
 # http://git.savannah.gnu.org/cgit/libcdio.git/patch/?id=4305bc1e093e4341aeddb857bd1e6203228000cb
 Patch1:		%{name}-cddb-fix.patch
+# http://git.savannah.gnu.org/cgit/libcdio.git/patch/?id=2d22ae18571caf29460a456340ff0603f04af6b4 (adapted)
+Patch2:		%{name}-version-fix.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.8.3
@@ -147,6 +149,7 @@ Narzędzia używające libcdio: cd-info, cd-read.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %{__sed} -i 's, example$,,' Makefile.am
 
