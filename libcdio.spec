@@ -13,13 +13,15 @@
 Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	0.94
+Version:	1.0.0
 Release:	1
 License:	GPL v3+
 Group:		Libraries
-Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.gz
-# Source0-md5:	d8734266a20fbc2605a97b701b838ab6
+Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.bz2
+# Source0-md5:	9f66508a03f58ddddba4104e378cd54c
 Patch0:		%{name}-info.patch
+# http://git.savannah.gnu.org/cgit/libcdio.git/patch/?id=4305bc1e093e4341aeddb857bd1e6203228000cb
+Patch1:		%{name}-cddb-fix.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.8.3
@@ -144,15 +146,13 @@ Narzędzia używające libcdio: cd-info, cd-read.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %{__sed} -i 's, example$,,' Makefile.am
 
-# bug: *.pc for C++ bindings, not programs
-%{__sed} -i 's,ENABLE_CPP,ENABLE_CXX_BINDINGS,' Makefile.am
-
+%build
 cp -f /usr/share/gettext/config.rpath .
 
-%build
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -198,7 +198,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
 %attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio.so.16
+%attr(755,root,root) %ghost %{_libdir}/libcdio.so.17
 %attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libiso9660.so.10
 %attr(755,root,root) %{_libdir}/libudf.so.*.*.*
