@@ -13,17 +13,13 @@
 Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	1.0.0
-Release:	2
+Version:	2.0.0
+Release:	0.1
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.bz2
-# Source0-md5:	9f66508a03f58ddddba4104e378cd54c
+# Source0-md5:	5beb1f68b9c812ee47c58072daf3be17
 Patch0:		%{name}-info.patch
-# http://git.savannah.gnu.org/cgit/libcdio.git/patch/?id=4305bc1e093e4341aeddb857bd1e6203228000cb
-Patch1:		%{name}-cddb-fix.patch
-# http://git.savannah.gnu.org/cgit/libcdio.git/patch/?id=2d22ae18571caf29460a456340ff0603f04af6b4 (adapted)
-Patch2:		%{name}-version-fix.patch
 URL:		http://www.gnu.org/software/libcdio/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.8.3
@@ -148,8 +144,6 @@ Narzędzia używające libcdio: cd-info, cd-read.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %{__sed} -i 's, example$,,' Makefile.am
 
@@ -201,9 +195,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS TODO
 %attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio.so.17
+%attr(755,root,root) %ghost %{_libdir}/libcdio.so.18
 %attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.10
+%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.11
 %attr(755,root,root) %{_libdir}/libudf.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libudf.so.0
 
@@ -229,7 +223,7 @@ rm -rf $RPM_BUILD_ROOT
 %files c++
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libcdio++.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio++.so.0
+%attr(755,root,root) %ghost %{_libdir}/libcdio++.so.1
 %attr(755,root,root) %{_libdir}/libiso9660++.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libiso9660++.so.0
 
