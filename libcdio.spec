@@ -14,7 +14,7 @@ Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
 Version:	2.1.0
-Release:	2
+Release:	3
 License:	GPL v3+
 Group:		Libraries
 Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.bz2
@@ -166,6 +166,7 @@ cp -f /usr/share/gettext/config.rpath .
 %{__autoheader}
 %{__automake}
 CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses"
+CFLAGS="%{rpmcflags} -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
 %configure \
 	--disable-silent-rules \
 	--enable-cd-info-linux \
