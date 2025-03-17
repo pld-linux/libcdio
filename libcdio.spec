@@ -1,9 +1,9 @@
 #
 # Conditional build:
 %bcond_with	bootstrap	# disable features to able to build without circular dependencies
-%bcond_without	cddb		# build cd-info without CDDB lookups (for bootstrap)
-%bcond_without	static_libs	# don't build static library
-%bcond_without	vcd		# build cd-info without VCD support (for bootstrap) (affects only *-utils, not libraries)
+%bcond_without	cddb		# CDDB lookups in cd-info (disable for bootstrap)
+%bcond_without	static_libs	# static libraries
+%bcond_without	vcd		# VCD support in cd-info (disable for bootstrap; affects only *-utils, not libraries)
 
 %if %{with bootstrap}
 %undefine	with_cddb
@@ -13,20 +13,17 @@
 Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	2.1.0
-Release:	3
+Version:	2.2.0
+Release:	1
 License:	GPL v3+
 Group:		Libraries
-Source0:	http://ftp.gnu.org/gnu/libcdio/%{name}-%{version}.tar.bz2
-# Source0-md5:	aa7629e8f73662a762f64c444b901055
+#Source0Download: https://github.com/libcdio/libcdio/releases
+Source0:	https://github.com/libcdio/libcdio/releases/download/%{version}/%{name}-%{version}.tar.bz2
+# Source0-md5:	373da5a346fc25e5c6fe63691945691d
 Patch0:		%{name}-info.patch
 Patch1:		ncursesw.patch
-Patch2:		Drop-LIBCDIO_SOURCE_PATH-by-dropping-STRIP_FROM_PATH.patch
-Patch3:		src-cdda-player.c-always-use-s-style-format-for-prin.patch
-Patch4:		Correct-realpath-test-failure.patch
-Patch5:		Use-getmntent-setmntent-for-reading-mounts.patch
 URL:		http://www.gnu.org/software/libcdio/
-BuildRequires:	autoconf >= 2.61
+BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake >= 1:1.8.3
 # for AM_ICONV and config.rpath
 BuildRequires:	gettext-tools >= 0.14
@@ -150,10 +147,6 @@ Narzędzia używające libcdio: cd-info, cd-read.
 %setup -q
 %patch -P0 -p1
 %patch -P1 -p1
-%patch -P2 -p1
-%patch -P3 -p1
-%patch -P4 -p1
-%patch -P5 -p1
 
 %{__sed} -i 's, example$,,' Makefile.am
 
@@ -204,11 +197,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS.md README README.libcdio THANKS TODO
+%doc AUTHORS ChangeLog NEWS.md README.md README-libcdio.md THANKS TODO
 %attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcdio.so.19
 %attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.11
+%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.12
 %attr(755,root,root) %{_libdir}/libudf.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libudf.so.0
 
@@ -236,7 +229,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libcdio++.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcdio++.so.1
 %attr(755,root,root) %{_libdir}/libiso9660++.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiso9660++.so.0
+%attr(755,root,root) %ghost %{_libdir}/libiso9660++.so.1
 
 %files c++-devel
 %defattr(644,root,root,755)
