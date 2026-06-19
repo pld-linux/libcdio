@@ -13,13 +13,13 @@
 Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	2.2.0
+Version:	2.3.0
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/libcdio/libcdio/releases
 Source0:	https://github.com/libcdio/libcdio/releases/download/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	373da5a346fc25e5c6fe63691945691d
+# Source0-md5:	fbc0cedda294b73ba7100d4bbfe9f7ec
 Patch0:		%{name}-info.patch
 Patch1:		ncursesw.patch
 URL:		http://www.gnu.org/software/libcdio/
@@ -30,7 +30,7 @@ BuildRequires:	gettext-tools >= 0.14
 BuildRequires:	help2man
 %{?with_cddb:BuildRequires:	libcddb-devel >= 1.0.1}
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool >= 2:1.5
+BuildRequires:	libtool >= 2:2
 BuildRequires:	ncurses-devel
 BuildRequires:	pkgconfig
 BuildRequires:	sed >= 4.0
@@ -151,15 +151,14 @@ Narzędzia używające libcdio: cd-info, cd-read.
 %{__sed} -i 's, example$,,' Makefile.am
 
 %build
-cp -f /usr/share/gettext/config.rpath .
-
+cp -pf /usr/share/gettext/config.rpath .
+cp -p /usr/share/gettext/m4/iconv.m4 m4
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses"
-CFLAGS="%{rpmcflags} -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64"
 %configure \
 	--disable-silent-rules \
 	--enable-cd-info-linux \
@@ -198,18 +197,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS.md README.md README-libcdio.md THANKS TODO
-%attr(755,root,root) %{_libdir}/libcdio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio.so.19
-%attr(755,root,root) %{_libdir}/libiso9660.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiso9660.so.12
-%attr(755,root,root) %{_libdir}/libudf.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libudf.so.0
+%{_libdir}/libcdio.so.*.*.*
+%ghost %{_libdir}/libcdio.so.19
+%{_libdir}/libiso9660.so.*.*.*
+%ghost %{_libdir}/libiso9660.so.12
+%{_libdir}/libudf.so.*.*.*
+%ghost %{_libdir}/libudf.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libcdio.so
-%attr(755,root,root) %{_libdir}/libiso9660.so
-%attr(755,root,root) %{_libdir}/libudf.so
+%{_libdir}/libcdio.so
+%{_libdir}/libiso9660.so
+%{_libdir}/libudf.so
 %{_includedir}/cdio
 %{_pkgconfigdir}/libcdio.pc
 %{_pkgconfigdir}/libiso9660.pc
@@ -226,15 +225,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files c++
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libcdio++.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcdio++.so.1
-%attr(755,root,root) %{_libdir}/libiso9660++.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiso9660++.so.1
+%{_libdir}/libcdio++.so.*.*.*
+%ghost %{_libdir}/libcdio++.so.1
+%{_libdir}/libiso9660++.so.*.*.*
+%ghost %{_libdir}/libiso9660++.so.1
 
 %files c++-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libcdio++.so
-%attr(755,root,root) %{_libdir}/libiso9660++.so
+%{_libdir}/libcdio++.so
+%{_libdir}/libiso9660++.so
 %{_includedir}/cdio++
 %{_pkgconfigdir}/libcdio++.pc
 %{_pkgconfigdir}/libiso9660++.pc
