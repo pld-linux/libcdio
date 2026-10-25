@@ -13,13 +13,13 @@
 Summary:	GNU Compact Disc Input, Output and Control Library
 Summary(pl.UTF-8):	Biblioteka GNU do obsługi wejścia, wyjścia i sterowania czytnikiem CD
 Name:		libcdio
-Version:	2.3.0
+Version:	2.4.0
 Release:	1
 License:	GPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/libcdio/libcdio/releases
 Source0:	https://github.com/libcdio/libcdio/releases/download/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	fbc0cedda294b73ba7100d4bbfe9f7ec
+# Source0-md5:	bcfae0cdb56b66137e6734c142c3a5a1
 Patch0:		%{name}-info.patch
 Patch1:		ncursesw.patch
 URL:		http://www.gnu.org/software/libcdio/
@@ -73,7 +73,7 @@ służące do wyświetlania informacji o płytach kompaktowych.
 Summary:	Header files for libcdio libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek libcdio
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 Header files for libcdio libraries.
@@ -85,7 +85,7 @@ Pliki nagłówkowe bibliotek libcdio.
 Summary:	Static libcdio libraries
 Summary(pl.UTF-8):	Statyczne biblioteki libcdio
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
 
 %description static
 Static libcdio libraries.
@@ -97,7 +97,7 @@ Statyczne biblioteki libcdio.
 Summary:	C++ libcdio libraries
 Summary(pl.UTF-8):	Biblioteki C++ libcdio
 Group:		Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 %description c++
 C++ libcdio libraries.
@@ -109,9 +109,9 @@ Biblioteki C++ libcdio.
 Summary:	Header files for C++ libcdio libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek C++ libcdio
 Group:		Development/Libraries
-Requires:	%{name}-c++ = %{version}-%{release}
-Requires:	%{name}-devel = %{version}-%{release}
-Requires:	libstdc++-devel
+Requires:	%{name}-c++%{?_isa} = %{version}-%{release}
+Requires:	%{name}-devel%{?_isa} = %{version}-%{release}
+Requires:	libstdc++-devel%{?_isa}
 
 %description c++-devel
 Header files for C++ libcdio libraries.
@@ -123,7 +123,7 @@ Pliki nagłówkowe bibliotek C++ libcdio.
 Summary:	Static C++ libcdio libraries
 Summary(pl.UTF-8):	Statyczne biblioteki C++ libcdio
 Group:		Development/Libraries
-Requires:	%{name}-c++-devel = %{version}-%{release}
+Requires:	%{name}-c++-devel%{?_isa} = %{version}-%{release}
 
 %description c++-static
 Static C++ libcdio libraries.
@@ -135,7 +135,7 @@ Statyczne biblioteki C++ libcdio.
 Summary:	libcdio utilities: cd-info, cd-read
 Summary(pl.UTF-8):	Narzędzia używające libcdio: cd-info, cd-read
 Group:		Applications
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 %description utils
 libcdio utilities: cd-info, cd-read.
@@ -198,9 +198,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS.md README.md README-libcdio.md THANKS TODO
 %{_libdir}/libcdio.so.*.*.*
-%ghost %{_libdir}/libcdio.so.19
+%ghost %{_libdir}/libcdio.so.21
 %{_libdir}/libiso9660.so.*.*.*
-%ghost %{_libdir}/libiso9660.so.12
+%ghost %{_libdir}/libiso9660.so.13
 %{_libdir}/libudf.so.*.*.*
 %ghost %{_libdir}/libudf.so.0
 
@@ -226,7 +226,7 @@ rm -rf $RPM_BUILD_ROOT
 %files c++
 %defattr(644,root,root,755)
 %{_libdir}/libcdio++.so.*.*.*
-%ghost %{_libdir}/libcdio++.so.1
+%ghost %{_libdir}/libcdio++.so.2
 %{_libdir}/libiso9660++.so.*.*.*
 %ghost %{_libdir}/libiso9660++.so.1
 
